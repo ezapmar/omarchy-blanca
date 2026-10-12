@@ -13,17 +13,29 @@ The icon is drawn in the bar's own text colour, so it follows your theme.
 ## What it needs
 
 **Blanca itself.** This widget is only the button; the clippings, the history and the
-hotkey are Blanca's, and the button runs `blanca menu`. Install Blanca first — on Omarchy:
+hotkey are Blanca's, and the button runs `blanca menu`. Install Blanca first.
+
+From the AUR, which pins the release and checks its SHA-256 before building:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ezapmar/blanca/master/install.sh | sh
+yay -S blanca-bin
 ```
 
-Or take the [pacman package](https://github.com/ezapmar/blanca/releases/latest/download/blanca-x86_64.pkg.tar.zst)
-from the latest release. Then run `blanca setup` once: it adds the `Ctrl+Alt+V` keybind,
-the clipboard watcher and the window rules. Blanca 0.3.5 or newer leaves this widget alone
-when it finds it installed here; an older Blanca writes a copy of the button itself, so
-install this one and let `blanca setup` defer to it.
+Or take a specific release and verify it yourself before installing it:
+
+```bash
+v=0.3.7
+curl -fLO "https://github.com/ezapmar/blanca/releases/download/v$v/blanca-bin-$v-1-x86_64.pkg.tar.zst"
+curl -fLO "https://github.com/ezapmar/blanca/releases/download/v$v/SHA256SUMS"
+sha256sum -c --ignore-missing SHA256SUMS
+sudo pacman -U "blanca-bin-$v-1-x86_64.pkg.tar.zst"
+```
+
+Both paths name an immutable tag, so what you install is the code that was reviewed. Then
+run `blanca setup` once: it adds the `Ctrl+Alt+V` keybind, the clipboard watcher and the
+window rules. Blanca 0.3.5 or newer leaves this widget alone when it finds it installed
+here; an older Blanca writes a copy of the button itself, so install this one and let
+`blanca setup` defer to it.
 
 Blanca needs `wl-paste` (wl-clipboard) and `wtype`, which `blanca setup` tells you about if
 they are missing. Nothing else: no service of its own, no network, no installer.
