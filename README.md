@@ -24,12 +24,16 @@ yay -S blanca-bin
 Or take a specific release and verify it yourself before installing it:
 
 ```bash
-v=0.3.7
+v=0.3.8
 curl -fLO "https://github.com/ezapmar/blanca/releases/download/v$v/blanca-bin-$v-1-x86_64.pkg.tar.zst"
 curl -fLO "https://github.com/ezapmar/blanca/releases/download/v$v/SHA256SUMS"
-sha256sum -c --ignore-missing SHA256SUMS
-sudo pacman -U "blanca-bin-$v-1-x86_64.pkg.tar.zst"
+sha256sum -c --ignore-missing SHA256SUMS &&
+  sudo pacman -U "blanca-bin-$v-1-x86_64.pkg.tar.zst"
 ```
+
+Install 0.3.8 or newer. From 0.3.8 on, Blanca's own update checks the next package
+against its release's `SHA256SUMS` before pacman sees it, and runs no script it
+downloaded; an older Blanca updates without that check.
 
 Both paths name an immutable tag, so what you install is the code that was reviewed. Then
 run `blanca setup` once: it adds the `Ctrl+Alt+V` keybind, the clipboard watcher and the
