@@ -15,13 +15,7 @@ The icon is drawn in the bar's own text colour, so it follows your theme.
 **Blanca itself.** This widget is only the button; the clippings, the history and the
 hotkey are Blanca's, and the button runs `blanca menu`. Install Blanca first.
 
-From the AUR, which pins the release and checks its SHA-256 before building:
-
-```bash
-yay -S blanca-bin
-```
-
-Or take a specific release and verify it yourself before installing it:
+Take a specific release of its pacman package and verify it before installing it:
 
 ```bash
 v=0.3.8
@@ -35,7 +29,7 @@ Install 0.3.8 or newer. From 0.3.8 on, Blanca's own update checks the next packa
 against its release's `SHA256SUMS` before pacman sees it, and runs no script it
 downloaded; an older Blanca updates without that check.
 
-Both paths name an immutable tag, so what you install is the code that was reviewed. Then
+The release is an immutable tag, so what you install is the code that was reviewed. Then
 run `blanca setup` once: it adds the `Ctrl+Alt+V` keybind, the clipboard watcher and the
 window rules. Blanca 0.3.5 or newer leaves this widget alone when it finds it installed
 here; an older Blanca writes a copy of the button itself, so install this one and let
